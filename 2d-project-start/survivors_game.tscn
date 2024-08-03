@@ -1,42 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://dly3aeg6tnck"]
+[gd_scene load_steps=5 format=3 uid="uid://dly3aeg6tnck"]
 
+[ext_resource type="Script" path="res://survivors_game.gd" id="1_0gnox"]
 [ext_resource type="PackedScene" uid="uid://ceta6ujdbmx1d" path="res://player.tscn" id="1_31ty4"]
 [ext_resource type="PackedScene" uid="uid://c5csgj5bg36ps" path="res://pine_tree.tscn" id="2_5t6fp"]
-[ext_resource type="PackedScene" uid="uid://dn0s2cbf0msyn" path="res://mob.tscn" id="2_qtybu"]
+
+[sub_resource type="Curve2D" id="Curve2D_mbmvo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1542, -1103, 0, 0, 0, 0, 2314, -1114, 0, 0, 0, 0, 2314, 1232, 0, 0, 0, 0, -1568, 1238, 0, 0, 0, 0, -1566, -1101, 0, 0, 0, 0, -1542, -1103)
+}
+point_count = 6
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_0gnox")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -50
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -1384.0
-offset_top = -853.0
-offset_right = 6663.0
-offset_bottom = 4178.0
+offset_left = -1458.0
+offset_top = -967.0
+offset_right = 2185.0
+offset_bottom = 1133.0
 
 [node name="Player" parent="." instance=ExtResource("1_31ty4")]
 position = Vector2(243, 210)
 
-[node name="Mob2" parent="." instance=ExtResource("2_qtybu")]
-light_mask = 2
-visibility_layer = 3
-position = Vector2(695, -89)
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-243, -210)
+curve = SubResource("Curve2D_mbmvo")
 
-[node name="Mob3" parent="." instance=ExtResource("2_qtybu")]
-light_mask = 2
-visibility_layer = 3
-position = Vector2(695, 166)
-
-[node name="Mob4" parent="." instance=ExtResource("2_qtybu")]
-light_mask = 2
-visibility_layer = 3
-position = Vector2(1213, 135)
-
-[node name="Mob" parent="." instance=ExtResource("2_qtybu")]
-light_mask = 2
-visibility_layer = 3
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-1542, -1103)
+rotation = -0.00285269
 
 [node name="PineTree" parent="." instance=ExtResource("2_5t6fp")]
 position = Vector2(-608, 177)
@@ -64,3 +61,63 @@ position = Vector2(209, 880)
 
 [node name="PineTree9" parent="." instance=ExtResource("2_5t6fp")]
 position = Vector2(1278, 503)
+
+[node name="PineTree10" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(911, -67)
+
+[node name="PineTree11" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(1061, -64)
+
+[node name="PineTree12" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(981, -172)
+
+[node name="PineTree13" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(1724, 1041)
+
+[node name="PineTree14" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(-887, 962)
+
+[node name="PineTree15" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(1824, -595)
+
+[node name="PineTree16" parent="." instance=ExtResource("2_5t6fp")]
+position = Vector2(-1079, -491)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -68.5
+offset_right = 272.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Game Over"
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="health_depleated" from="Player" to="." method="_on_player_health_depleated"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

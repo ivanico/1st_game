@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvxveastn57ty"]
+
+[ext_resource type="PackedScene" uid="uid://ogik4s70pgwl" path="res://characters/slime/slime.tscn" id="1_4k1bl"]
+[ext_resource type="Script" path="res://boss.gd" id="1_myaht"]
+[ext_resource type="PackedScene" uid="uid://w48ljpbckqtg" path="res://gun.tscn" id="3_pyqs4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aixng"]
+radius = 52.0096
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_myaht")
+
+[node name="Slime" parent="." instance=ExtResource("1_4k1bl")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -29)
+shape = SubResource("CircleShape2D_aixng")
+
+[node name="Gun" parent="." instance=ExtResource("3_pyqs4")]
