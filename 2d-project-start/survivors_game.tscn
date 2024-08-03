@@ -84,6 +84,7 @@ position = Vector2(1824, -595)
 position = Vector2(-1079, -491)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
 autostart = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
@@ -115,7 +116,6 @@ theme_override_font_sizes/font_size = 100
 text = "Game Over"
 
 [node name="Timer2" type="Timer" parent="."]
-wait_time = 20.0
 autostart = true
 
 [connection signal="health_depleated" from="Player" to="." method="_on_player_health_depleated"]

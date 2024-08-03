@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvxveastn57ty"]
 
 [ext_resource type="PackedScene" uid="uid://ogik4s70pgwl" path="res://characters/slime/slime.tscn" id="1_4k1bl"]
-[ext_resource type="Script" path="res://boss.gd" id="1_myaht"]
+[ext_resource type="Script" path="res://boss_gun.gd" id="1_q6bdj"]
 [ext_resource type="PackedScene" uid="uid://c7nlw112ve0da" path="res://boss_gun.tscn" id="3_b2qon"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aixng"]
@@ -10,7 +10,7 @@ radius = 52.0096
 [node name="Boss" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_myaht")
+script = ExtResource("1_q6bdj")
 
 [node name="Slime" parent="." instance=ExtResource("1_4k1bl")]
 unique_name_in_owner = true

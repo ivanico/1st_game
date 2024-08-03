@@ -15,7 +15,7 @@ func spawn_boss():
 
 
 func _on_timer_timeout():
-	spawn_mob()
+	spawn_mob() 
 
 
 func _on_player_health_depleated():
